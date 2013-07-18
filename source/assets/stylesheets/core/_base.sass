@@ -1,0 +1,68 @@
+//-------------------------------------
+//  Base
+//-------------------------------------
+
+html
+  font-size: $base-fontSize
+  height: 100%
+  overflow: hidden
+
+body
+  background: $base-background
+  color: $base-color
+  font-size: 100%
+  font-family: $base-fontFamily
+  height: 100%
+  line-height: $base-lineHeight
+  overflow-x: hidden
+  -webkit-font-smoothing: antialiased
+
+img
+  height: auto
+  max-width: 100%
+
+// ----- Block Content ----- //
+
+h1, h2, h3
+  font-weight: bold
+  margin: 0
+
+h1, .h1, %h1
+  font-size: rem(48px)
+
+h2, .h2, %h2
+  font-size: rem(30px)
+
+h3, .h3, %h3
+  font-size: rem(24px)
+
+h4, .h4, %h4
+  margin: 0 0 rem(10px)
+
+p
+  font-size: $base-fontSize
+
+i
+  font-style: normal
+// ----- Inline Content ----- //
+
+a
+  color: $base-link-color
+  text-decoration: none
+  &:hover,
+  &:focus
+    color: darken($base-link-color, 10%)
+
+ul
+  list-style: none
+
+strong
+  font-weight: bold
+
+::selection
+  background: rgba(lighten($base-link-color, 20%), 0.5)
+  color: $base-color
+
+::-moz-selection
+  background: rgba(lighten($base-link-color, 20%), 0.5)
+  color: $base-color

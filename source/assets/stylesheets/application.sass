@@ -1,0 +1,110 @@
+//-------------------------------------
+//  Application
+//-------------------------------------
+
+// ----- Compass ----- //
+
+@import "compass"
+@import "compass/layout"
+
+// ----- Reset ----- //
+
+@import "normalize"
+
+// ----- Core ----- //
+
+@import "core/settings"
+@import "core/helpers"
+@import "core/base"
+
+// ----- Modules ----- //
+
+@import "modules/*"
+
+//-------------------------------------
+//  Header
+//-------------------------------------
+
+.header
+  background: #42b398
+  padding-top: rem(55px)
+  padding-bottom: rem(115px)
+  text-align: center
+
+.header-about
+  font-size: $base-fontSize + 3
+
+// ----- Logo ----- //
+
+.logo
+  background: #FFF
+  display: inline-block
+  border-radius: 50%
+  height: rem(155px)
+  width: rem(155px)
+  h1
+    padding-top: rem(22px)
+    margin-left: rem(7px)
+    text-align: center
+    font-size: rem(120px)
+    font-weight: normal
+    color: #42b398
+    line-height: 0.9
+  i:before
+    @extend %icn
+    @extend %icn--logo
+
+// ----- Content ----- //
+
+.info
+  background: #FFF
+  padding: 30px 43px 10px
+  border-bottom: 2px solid rgba(#000,0.2)
+  position: relative
+  bottom: 70px
+
+.c-content
+  background: #E5E5E5
+
+// ----- Footer ----- //
+
+.footer
+  background: #242827
+
+//-------------------------------------
+//  Inbox
+//-------------------------------------
+
+.link-envy
+  i:before
+    @extend %icn
+    @extend %icn--envy
+
+.link-twitter
+  i:before
+    @extend %icn
+    @extend %icn--twitter
+
+.link-dribbble
+  i:before
+    @extend %icn
+    @extend %icn--dribbble
+
+.link-github
+  i:before
+    @extend %icn
+    @extend %icn--github
+
+.c-icn
+  font-size: rem(32px)
+  text-align: center
+  display: inline-block
+  margin: 0 10px
+  b
+    @extend %srt
+
+.link-list
+  display: inline-block
+  text-align: center
+  padding: 0
+  width: 100%
