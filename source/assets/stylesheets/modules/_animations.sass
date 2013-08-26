@@ -4,5 +4,29 @@
 
 #holder
   position: absolute
-  top: 59px
-  right: -8px
+  right: -1px
+  top: 64px
+  +transform(scale(0.9))
+
+// .logo
+//   &:hover
+//     .eyes
+//       -webkit-transition: right 1s
+//       transition: right 1s
+//       -webkit-transform: translateX(10px)
+//       transform: translateX(10px)
+
+.eyes
+  background: image-url('eyes.svg') 0 0 no-repeat
+  height: 100%
+  position: absolute
+  right: -43px
+  top: 97px
+  width: 100%
+  -webkit-transition: right 1s
+  transition: right 1s
+  -webkit-animation: move_eye 0.2s 0.8s 1 ease-out alternate, move_eye_left 0.2s 1s 2 ease-out alternate
+  animation: move_eye 0.2s 0.8s 1 ease-out alternate, move_eye_left 0.2s 1s 2 ease-out alternate
+
+
+

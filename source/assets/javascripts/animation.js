@@ -1,5 +1,5 @@
 window.onload = function () {
-                var R = Raphael("holder", 100, 100);
+                var R = Raphael("holder", 100, 50);
                 // Eyebro
                 (function () {
 
@@ -10,11 +10,11 @@ window.onload = function () {
                         console.log('GOT IT'),
                         Bro.animate(anim2);
                     };
-                    var Bro = R.path(path1).attr({fill: "#000", stroke: "none"}),
+                    var Bro = R.path(path1).attr({fill: "rgba(0, 0, 0, 0.8)", stroke: "none"}),
                         upBro = {path: path2},
                         downBro = {path: path1},
                         anim2 = Raphael.animation(downBro, 200, 'linear').delay(2000),
-                        anim = Raphael.animation(upBro, 1000, 'elastic', callback).delay(1000);
+                        anim = Raphael.animation(upBro, 1000, 'elastic', callback).delay(3000);
 
                     Bro.animate(anim);
                 })();
