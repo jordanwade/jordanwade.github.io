@@ -11,7 +11,8 @@
     %link{:rel => 'shortcut icon', :type => 'image/x-icon', :href => image_path('favicon.ico')}
     %link{:href => "http://fonts.googleapis.com/css?family=Quando", :rel => "stylesheet", :type => "text/css"}
     = stylesheet_link_tag 'normalize', 'application'
-    = javascript_include_tag  'application'
+    = javascript_include_tag  'application', 'raphael', 'animation'
+
 
   %body{class: page_classes}
     %header.header.l-row
@@ -20,6 +21,7 @@
           %h1
             %i(aria-hidden="true")
             %b.srt Logo
+          #holder
       .l-cell
         .logo-name
           %h1
