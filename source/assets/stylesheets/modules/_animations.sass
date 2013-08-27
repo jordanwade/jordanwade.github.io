@@ -3,10 +3,10 @@
 //-------------------------------------
 
 #holder
-  position: absolute
-  right: -1px
-  top: 64px
-  +transform(scale(0.9))
+  position: relative
+  right: -15px
+  top: -48px
+  height: 225px
 
 // .logo
 //   &:hover
@@ -15,18 +15,24 @@
 //       transition: right 1s
 //       -webkit-transform: translateX(10px)
 //       transform: translateX(10px)
-
+// .brow
+//   background: image-url('brow.svg') 0 0 no-repeat
+//   width: 38px
+//   position: absolute
+//   top: 0
+//   right: 0
+//   height: 13px
+//   -webkit-animation: brow 0.2s 0.8s steps(4, end) alternate 2
+//   animation: brow 0.2s 0.8s steps(4, end) alternate 2
 .eyes
   background: image-url('eyes.svg') 0 0 no-repeat
   height: 100%
   position: absolute
-  right: -43px
+  right: -84px
   top: 97px
   width: 100%
   -webkit-transition: right 1s
   transition: right 1s
-  -webkit-animation: move_eye 0.2s 0.8s 1 ease-out alternate, move_eye_left 0.2s 1s 2 ease-out alternate
-  animation: move_eye 0.2s 0.8s 1 ease-out alternate, move_eye_left 0.2s 1s 2 ease-out alternate
-
-
+  -webkit-animation: move_eye 2.3s 0.8s 1 ease-out alternate
+  animation: move_eye 2.3s 0.8s 1 ease-out alternate
 

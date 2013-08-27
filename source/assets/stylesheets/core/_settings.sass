@@ -54,48 +54,71 @@ $c-mono-fontFamily: Monaco, Consolas, "Lucida Console", monospace
 
 $l-maxWidth: 700px
 
+// @-webkit-keyframes brow
+//   to
+//     background-position: -150px 0
+
+// @keyframes brow
+//   to
+//     background-position: -150px 0
 
 //animations
 
 @-webkit-keyframes move_eye
-  to
+  0%
+    -webkit-transform: translateX(0)
+    transform: translateX(0)
+  25%, 35%
     -webkit-transform: translateX(5px)
     transform: translateX(5px)
+  85%, 95%
+    -webkit-transform: translateX(-5px)
+    transform: translateX(-5px)
+  100%
+    -webkit-transform: translateX(0)
+    transform: translateX(0)
+
 
 @-moz-keyframes move_eye
-  to
+  0%
+    -webkit-transform: translateX(0)
+    transform: translateX(0)
+  25%, 35%
     -webkit-transform: translateX(5px)
     transform: translateX(5px)
+  85%, 95%
+    -webkit-transform: translateX(-5px)
+    transform: translateX(-5px)
+  100%
+    -webkit-transform: translateX(0)
+    transform: translateX(0)
+
 
 @-o-keyframes move_eye
-  to
+  0%
+    -webkit-transform: translateX(0)
+    transform: translateX(0)
+  25%, 35%
     -webkit-transform: translateX(5px)
     transform: translateX(5px)
+  85%, 95%
+    -webkit-transform: translateX(-5px)
+    transform: translateX(-5px)
+  100%
+    -webkit-transform: translateX(0)
+    transform: translateX(0)
 
 @keyframes move_eye
-  to
+  0%
+    -webkit-transform: translateX(0)
+    transform: translateX(0)
+  25%, 35%
     -webkit-transform: translateX(5px)
     transform: translateX(5px)
-
-// ----- Comment ----- //
-
-@-webkit-keyframes move_eye_left
-  to
+  85%, 95%
     -webkit-transform: translateX(-5px)
     transform: translateX(-5px)
-
-@-moz-keyframes move_eye_left
-  to
-    -webkit-transform: translateX(-5px)
-    transform: translateX(-5px)
-
-@-o-keyframes move_eye_left
-  to
-    -webkit-transform: translateX(-5px)
-    transform: translateX(-5px)
-
-@keyframes move_eye_left
-  to
-    -webkit-transform: translateX(-5px)
-    transform: translateX(-5px)
+  100%
+    -webkit-transform: translateX(0)
+    transform: translateX(0)
 
