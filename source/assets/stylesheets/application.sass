@@ -36,21 +36,19 @@
 
 .logo
   display: inline-block
+  position: relative
+
+.logo-name
+  position: relative
+  top: -55px
   h1
     text-align: center
     font-size: rem(180px)
     font-weight: normal
     color: $base-color
-    line-height: 0.9
+    line-height: 0.7
   i:before
     @extend %icn
-    @extend %icn--logo
-
-.logo-name
-  @extend .logo
-  position: relative
-  top: -25px
-  i:before
     @extend %icn--name
 
 // ----- Content ----- //

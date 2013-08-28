@@ -9,3 +9,6 @@
 
 # Ignore Sass' cache
 /.sass-cache
+
+# Ignore Sass' cache
+.DS_Store
