@@ -10,5 +10,8 @@
 # Ignore Sass' cache
 /.sass-cache
 
-# Ignore Sass' cache
-.DS_Store
+# Ignore build files
+/build
+
+# Ignore DS files
+*.DS_Store
