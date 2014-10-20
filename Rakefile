@@ -2,6 +2,7 @@ desc 'Generate flat files with Middleman'
 task :generate do
   puts '-- Generating site with Middleman --'
   system './bin/middleman build --clean'
+  system "cp CNAME build/"
   cd 'build' do
     system 'git init'
     system 'git remote add origin git@github.com:jordanwade/personal-site.git'
@@ -14,7 +15,7 @@ task :push do
   cd 'build' do
     system 'git add .'
     system 'git add -u'
-    system 'git commit -m "Site updated at #{Time.now.utc}"'
+    system "git commit -m 'Site updated at #{Time.now.utc}'"
     system 'git push origin master --force'
   end
 end
