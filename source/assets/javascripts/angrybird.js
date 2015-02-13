@@ -10,10 +10,10 @@ var mainState = {
         game.stage.backgroundColor = '#71c5cf';
 
         // Load the bird sprite
-        game.load.image('bird', 'assets/images/bird.png');
+        game.load.image('bird', '../assets/images/bird.png');
 
         // Load the pipe sprite
-        game.load.image('pipe', 'assets/images/pipe.png');
+        game.load.image('pipe', '../assets/images/pipe.png');
     },
 
     // Fuction called after 'preload' to setup the game
