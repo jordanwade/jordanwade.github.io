@@ -10,9 +10,8 @@
     %title= data.page.title || "The Middleman"
     %link{:rel => 'shortcut icon', :type => 'image/x-icon', :href => image_path('favicon.ico')}
     %link{:href => "http://fonts.googleapis.com/css?family=Quando", :rel => "stylesheet", :type => "text/css"}
-    = stylesheet_link_tag 'normalize', 'application'
-    = javascript_include_tag  'application'
 
+    = stylesheet_link_tag 'normalize', 'application'
 
   %body{class: page_classes}
     / .brow
@@ -30,3 +29,8 @@
     = yield
 
     %footer.footer.l-row
+
+  = javascript_include_tag  'application'
+  - if data.page.scripts
+    - data.page.scripts.each do |script|
+      = javascript_include_tag  "#{ script }"
