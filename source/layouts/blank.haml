@@ -19,7 +19,8 @@
 
     %footer.footer.l-row
 
-  = javascript_include_tag  'application'
   - if data.page.scripts
     - data.page.scripts.each do |script|
       = javascript_include_tag  "#{ script }"
+
+  // = javascript_include_tag  'application'
