@@ -4,7 +4,6 @@
 
 activate :automatic_image_sizes
 activate :directory_indexes
-activate :livereload
 activate :automatic_image_sizes
 
 # ====================================

@@ -3,9 +3,32 @@
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var player = {};
-  var ground = [];
-  var platformWidth = 110;
-  var platformHeight = canvas.height - 43;
+  var ground = [], enemies = [];
+
+  // platform variables
+  var platformHeight, platformLength, gapLength;
+  var platformWidth = 52;
+  var platformBase = canvas.height - platformWidth;  // bottom row of the game
+  var platformSpacer = 104;
+
+  /**
+   * Get a random number between range
+   * @param {integer}
+   * @param {integer}
+   */
+  function rand(low, high) {
+    return Math.floor( Math.random() * (high - low + 1) + low );
+  }
+
+  /**
+   * Bound a number between range
+   * @param {integer} num - Number to bound
+   * @param {integer}
+   * @param {integer}
+   */
+  function bound(num, low, high) {
+    return Math.max( Math.min(num, high), low);
+  }
 
   /**
    * Asset pre-loader object. Loads all images
@@ -171,26 +194,260 @@
   })();
 
   /**
+   * A vector for 2d space.
+   * @param {integer} x - Center x coordinate.
+   * @param {integer} y - Center y coordinate.
+   * @param {integer} dx - Change in x.
+   * @param {integer} dy - Change in y.
+   */
+  function Vector(x, y, dx, dy) {
+    // position
+    this.x = x || 0;
+    this.y = y || 0;
+    // direction
+    this.dx = dx || 0;
+    this.dy = dy || 0;
+  }
+
+  /**
+   * Advance the vectors position by dx,dy
+   */
+  Vector.prototype.advance = function() {
+    this.x += this.dx;
+    this.y += this.dy;
+  };
+
+  /**
+   * Get the minimum distance between two vectors
+   * @param {Vector}
+   * @return minDist
+   */
+  Vector.prototype.minDist = function(vec) {
+    var minDist = Infinity;
+    var max     = Math.max( Math.abs(this.dx), Math.abs(this.dy),
+                            Math.abs(vec.dx ), Math.abs(vec.dy ) );
+    var slice   = 1 / max;
+
+    var x, y, distSquared;
+
+    // get the middle of each vector
+    var vec1 = {}, vec2 = {};
+    vec1.x = this.x + this.width/2;
+    vec1.y = this.y + this.height/2;
+    vec2.x = vec.x + vec.width/2;
+    vec2.y = vec.y + vec.height/2;
+    for (var percent = 0; percent < 1; percent += slice) {
+      x = (vec1.x + this.dx * percent) - (vec2.x + vec.dx * percent);
+      y = (vec1.y + this.dy * percent) - (vec2.y + vec.dy * percent);
+      distSquared = x * x + y * y;
+
+      minDist = Math.min(minDist, distSquared);
+    }
+
+    return Math.sqrt(minDist);
+  };
+
+  /**
+   * The player object
+   */
+  var player = (function(player) {
+    // add properties directly to the player imported object
+    player.width  = 79.6;
+    player.height = 80;
+    player.speed  = 4;
+
+    // jumping
+    player.gravity   = 1;
+    player.dy        = 0;
+    player.jumpDy    = -10;
+    player.isFalling = false;
+    player.isJumping = false;
+
+    // spritesheets
+    player.sheet     = new SpriteSheet('../assets/images/redneck-run.png', player.width, player.height);
+    player.walkAnim  = new Animation(player.sheet, 5, 0, 4);
+    player.jumpAnim  = new Animation(player.sheet, 5, 3, 3);
+    player.fallAnim  = new Animation(player.sheet, 5, 3, 3);
+    player.anim      = player.walkAnim;
+
+    Vector.call(player, 0, 0, 0, player.dy);
+
+    var jumpCounter = 0;  // how long the jump button can be pressed down
+
+    /**
+     * Update the player's position and animation
+     */
+    player.update = function() {
+
+      // jump if not currently jumping or falling
+      if (KEY_STATUS.space && player.dy === 0 && !player.isJumping) {
+        player.isJumping = true;
+        player.dy = player.jumpDy;
+        jumpCounter = 12;
+      }
+
+      // jump higher if the space bar is continually pressed
+      if (KEY_STATUS.space && jumpCounter) {
+        player.dy = player.jumpDy;
+      }
+
+      jumpCounter = Math.max(jumpCounter-1, 0);
+
+      this.advance();
+
+      // add gravity
+      if (player.isFalling || player.isJumping) {
+        player.dy += player.gravity;
+      }
+
+      // change animation if falling
+      if (player.dy > 0) {
+        player.anim = player.fallAnim;
+      }
+      // change animation is jumping
+      else if (player.dy < 0) {
+        player.anim = player.jumpAnim;
+      }
+      else {
+        player.anim = player.walkAnim;
+      }
+
+      player.anim.update();
+    };
+
+    /**
+     * Draw the player at it's current position
+     */
+    player.draw = function() {
+      player.anim.draw(player.x, player.y);
+    };
+
+    /**
+     * Reset the player's position
+     */
+    player.reset = function() {
+      player.x = 164;
+      player.y = 250;
+    };
+
+    return player;
+  })(Object.create(Vector.prototype));
+
+  /**
+   * Sprites are anything drawn to the screen (ground, enemies, etc.)
+   * @param {integer} x - Starting x position of the player
+   * @param {integer} y - Starting y position of the player
+   * @param {string} type - Type of sprite
+   */
+  function Sprite(x, y, type) {
+    this.x      = x;
+    this.y      = y;
+    this.width  = platformWidth;
+    this.height = platformWidth;
+    this.type   = type;
+    Vector.call(this, x, y, 0, 0);
+
+    /**
+     * Update the Sprite's position by the player's speed
+     */
+    this.update = function() {
+      this.dx = -player.speed;
+      this.advance();
+    };
+
+    /**
+     * Draw the sprite at it's current position
+     */
+    this.draw = function() {
+      ctx.save();
+      ctx.translate(0.5,0.5);
+      ctx.drawImage(assetLoader.imgs[this.type], this.x, this.y);
+      ctx.restore();
+    };
+  }
+  Sprite.prototype = Object.create(Vector.prototype);
+
+  /**
+   * Update all ground position and draw. Also check for collision against the player.
+   */
+  function updateGround() {
+    // animate ground
+    player.isFalling = true;
+    for (var i = 0; i < ground.length; i++) {
+      ground[i].update();
+      ground[i].draw();
+
+      // stop the player from falling when landing on a platform
+      var angle;
+      if (player.minDist(ground[i]) <= player.height/2 + platformWidth/2 &&
+          (angle = Math.atan2(player.y - ground[i].y, player.x - ground[i].x) * 180/Math.PI) > -130 &&
+          angle < -50) {
+        player.isJumping = false;
+        player.isFalling = false;
+        player.y = ground[i].y - player.height + 5;
+        player.dy = 0;
+      }
+    }
+
+    // remove ground that have gone off screen
+    if (ground[0] && ground[0].x < -platformWidth) {
+      ground.splice(0, 1);
+    }
+  }
+
+  /**
+   * Update the players position and draw
+   */
+  function updatePlayer() {
+    player.update();
+    player.draw();
+
+  }
+
+ /**
    * Game loop
    */
   function animate() {
-    requestAnimFrame( animate );
+    if (!stop) {
+      requestAnimFrame( animate );
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    background.draw();
+      background.draw();
 
-    for (i = 0; i < ground.length; i++) {
-      ground[i].x -= player.speed;
-      ctx.drawImage(assetLoader.imgs.grass, ground[i].x, ground[i].y);
+      // update entities
+
+      updateGround();
+      updatePlayer();
+
     }
-
-    if (ground[0].x <= -platformWidth) {
-      ground.shift();
-      ground.push({'x': ground[ground.length-1].x + platformWidth, 'y': platformHeight});
-    }
-
-    player.anim.update();
-    player.anim.draw(164, 375);
   }
+
+  /**
+   * Keep track of the spacebar events
+   */
+  var KEY_CODES = {
+    32: 'space'
+  };
+  var KEY_STATUS = {};
+  for (var code in KEY_CODES) {
+    if (KEY_CODES.hasOwnProperty(code)) {
+       KEY_STATUS[KEY_CODES[code]] = false;
+    }
+  }
+  document.onkeydown = function(e) {
+    var keyCode = (e.keyCode) ? e.keyCode : e.charCode;
+    if (KEY_CODES[keyCode]) {
+      e.preventDefault();
+      KEY_STATUS[KEY_CODES[keyCode]] = true;
+    }
+  };
+  document.onkeyup = function(e) {
+    var keyCode = (e.keyCode) ? e.keyCode : e.charCode;
+    if (KEY_CODES[keyCode]) {
+      e.preventDefault();
+      KEY_STATUS[KEY_CODES[keyCode]] = false;
+    }
+  };
 
   /**
    * Request Animation Polyfill
@@ -207,19 +464,18 @@
   })();
 
   /**
-   * Start the game - reset all variables and entities, spawn platforms and water.
+   * Start the game - reset all variables and entities, spawn ground and water.
    */
   function startGame() {
-    // setup the player
-    player.width  = 80;
-    player.height = 80;
-    player.speed  = 4;
-    player.sheet  = new SpriteSheet('../assets/images/redneck-run.png', player.width, player.height);
-    player.anim   = new Animation(player.sheet, 5, 0, 3);
+    ground = [];
+    player.reset();
+    stop = false;
+    platformHeight = 2;
+    platformLength = 15;
 
-    // create the ground tiles
-    for (i = 0, length = Math.floor(canvas.width / platformWidth) + 2; i < length; i++) {
-      ground[i] = {'x': i * platformWidth, 'y': platformHeight};
+
+    for (var i = 0; i < 30; i++) {
+      ground.push(new Sprite(i * (platformWidth-3), platformBase - platformHeight, 'grass'));
     }
 
     background.reset();
