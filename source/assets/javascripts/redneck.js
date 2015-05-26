@@ -252,7 +252,7 @@
    */
   var player = (function(player) {
     // add properties directly to the player imported object
-    player.width  = 79.6;
+    player.width  = 80;
     player.height = 80;
     player.speed  = 4;
 
@@ -267,7 +267,7 @@
     player.sheet     = new SpriteSheet('../assets/images/redneck-run.png', player.width, player.height);
     player.walkAnim  = new Animation(player.sheet, 5, 0, 4);
     player.jumpAnim  = new Animation(player.sheet, 5, 3, 3);
-    player.fallAnim  = new Animation(player.sheet, 5, 3, 3);
+    player.fallAnim  = new Animation(player.sheet, 5, 0, 0);
     player.anim      = player.walkAnim;
 
     Vector.call(player, 0, 0, 0, player.dy);
