@@ -28,6 +28,10 @@
 .header
   padding-top: rem(55px)
   text-align: center
+  font-weight: $c-header-fontWeight
+
+  h1
+    margin-top: rem(-40px)
 
 .header-about
   font-size: $base-fontSize + 3
@@ -59,19 +63,11 @@
   // border-top: 2px solid rgba(#000, 0.5)
   position: relative
 
-// ----- Footer ----- //
-
 //-------------------------------------
 //  Inbox
 //-------------------------------------
 %link
   border-bottom: none
-
-.link-envy
-  @extend %link
-  i:before
-    @extend %icn
-    @extend %icn--envy
 
 .link-twitter
   @extend %link
