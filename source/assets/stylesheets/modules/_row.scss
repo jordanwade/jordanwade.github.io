@@ -1,0 +1,15 @@
+// *************************************
+//
+//   Row
+//   -> Width-spanning blocks
+//
+// *************************************
+
+.row {
+  overflow: hidden;
+  padding: 0 $space;
+}
+
+.row-b {
+  background: #f4f2f3;
+}

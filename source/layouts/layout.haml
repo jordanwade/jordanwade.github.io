@@ -14,17 +14,11 @@
     = stylesheet_link_tag 'normalize', 'application'
 
   %body{class: page_classes}
-    / .brow
-    %header.header.l-row
-      .l-cell
-        .logo
-          .eyes
-          #holder
-        %h1 Jordan Wade
-
-    = yield
-
-    %footer.footer.l-row
+    %main
+      = yield
+    %footer.footer.row
+      .cell.well
+        %p &copy;2017 Jordan Wade. All rights reserved.
 
   - if data.page.scripts
     - data.page.scripts.each do |script|

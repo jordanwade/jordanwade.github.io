@@ -1,24 +1,65 @@
 ---
 title: Jordan Wade
-scripts:
-  - vendor/raphael
-  - animation
 ---
 
-.l-row.c-content
-  .l-cell.info
-    %p.header-about
-      <strong> I'm a UI Engineer at <a href="http://codeschool.com/" alt="Code School">Code School</a></strong>. I grew up in a small town in Indiana and started as a carpenter on a Amish construction crew. I traded in my tool belt for all things development and design.  Now, I call the state of Florida my home.
-    %ul.link-list
-      %li.c-icn
-        = link_to 'https://dribbble.com/jordanwade', class: 'link-dribbble' do
-          %b Dribbble
-          %i(aria-hidden="true")
-      %li.c-icn
-        = link_to 'https://twitter.com/jjordanwade', class: 'link-twitter' do
-          %b Twitter
-          %i(aria-hidden="true")
-      %li.c-icn
-        = link_to 'https://github.com/jordanwade', class: 'link-github' do
-          %b GitHub
-          %i(aria-hidden="true")
+%section.row.row-b
+  .cell.well.well--2
+    .bucket
+      .bucket-media
+        =image_tag("/assets/images/face-FINAL.svg")
+      .bucket-conent
+        %h1 Jordan Wade
+        %p.header-about
+          <strong> I'm a UI Engineer at <a href="http://codeschool.com/" alt="Code School">Code School</a></strong>. I grew up in a small town in Indiana and started as a carpenter on a Amish construction crew. I traded in my tool belt for all things development and design.  Now, I call the state of Florida my home.
+        %ul.link-list
+          %li.c-icn
+            = link_to 'https://dribbble.com/jordanwade', class: 'link-dribbble' do
+              %b Dribbble
+              %i(aria-hidden="true")
+          %li.c-icn
+            = link_to 'https://twitter.com/jjordanwade', class: 'link-twitter' do
+              %b Twitter
+              %i(aria-hidden="true")
+          %li.c-icn
+            = link_to 'https://github.com/jordanwade', class: 'link-github' do
+              %b GitHub
+              %i(aria-hidden="true")
+%section.row
+  .cell.well
+    %h2 Posts
+    %h3 A written collection of my thoughts, explorations, and workflow.
+
+    %a(href="https://codeschool.com/blog/2016/03/29/benefits-of-learning-how-to-use-svg/")
+      %article.card
+        %time(datetime="2016-03-29") MARCH 29, 2016
+        %h4 Benefits of Learning How to Use SVG
+        %p The advantages of using SVGs for your icons, illustrations, and complex animations is game changing and easy to implement.
+
+    %a(href="https://codeschool.com/blog/2015/11/06/abstract-art-with-sass/")
+      %article.card
+        %time(datetime="2015-11-06") NOVEMBER 06, 2015
+        %h4 Abstract Art With Sass
+        %p Experimenting with the technologies we use everyday is a great way to hone our skills and take a break from our everyday work.
+
+    %a(href="https://codeschool.com/blog/2015/09/11/how-to-keep-web-animations-from-slowing-you-down/")
+      %article.card
+        %time(datetime="2015-09-11") SEPTEMBER 11, 2015
+        %h4 How to Keep Web Animations From Slowing You Down
+        %p Animations can add tremendous value to the user experience on your website or application, but there are certain properties that just slow things down.
+
+    %a(href="https://codeschool.com/blog/2014/11/04/inline-svg-animations/")
+      %article.card
+        %time(datetime="2014-11-04") NOVEMBER 04, 2014 
+        %h4 Animating With Inline SVG
+        %p Incorporating animation in your design is a great way to grab a user’s attention and, for me, it adds some fun to an otherwise static design.     
+
+    %a(href="https://codeschool.com/blog/2014/06/24/designing-characters-with-box-shadow/")
+      %article.card
+        %time(datetime="2014-06-24") JUNE 24, 2014  
+        %h4 Designing Characters with Box Shadow
+        %p When your lucky enough to work with great designers, sometimes you just have to try your hand at recreating their awesome work with CSS.
+
+%section.row
+  .cell.well
+    %h2 Side Projects
+    %h3 A small collection of projects I like to work on in the evenings and weekends.

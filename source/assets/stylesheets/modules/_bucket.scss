@@ -1,0 +1,41 @@
+// *************************************
+//
+//  Bucket
+//   -> Media-supported content
+//
+// *************************************
+
+.bucket {
+  display: flex;
+}
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Vertically Center ----- //
+
+.bucket--vc {
+  align-items: center;
+}
+
+// -------------------------------------
+//   Submodules
+// -------------------------------------
+
+// ----- Content ----- //
+
+.bucket-content {
+  flex-grow: 1;
+}
+
+// ----- Media ----- //
+
+.bucket-media {
+  flex-shrink: 0;
+  margin-right: $space;
+
+  > img {
+    display: block;
+  }
+}

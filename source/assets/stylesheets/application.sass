@@ -2,11 +2,6 @@
 //  Application
 //-------------------------------------
 
-// ----- Compass ----- //
-
-@import "compass"
-@import "compass/layout"
-
 // ----- Reset ----- //
 
 @import "normalize"
@@ -17,55 +12,14 @@
 @import "core/helpers"
 @import "core/base"
 
-// ----- Modules ----- //
+// ----- Components ----- //
 
 @import "modules/*"
 
 //-------------------------------------
-//  Header
-//-------------------------------------
-
-.header
-  padding-top: rem(55px)
-  text-align: center
-  font-weight: $c-header-fontWeight
-
-  h1
-    margin-top: rem(-40px)
-
-.header-about
-  font-size: $base-fontSize + 3
-
-// ----- Logo ----- //
-
-.logo
-  display: inline-block
-  position: relative
-
-.logo-name
-  position: relative
-  top: -55px
-  h1
-    text-align: center
-    font-size: rem(180px)
-    font-weight: normal
-    color: $base-color
-    line-height: 0.7
-  i:before
-    @extend %icn
-    @extend %icn--name
-
-// ----- Content ----- //
-
-.info
-  padding: 0 43px 10px
-  // border-bottom: 2px solid rgba(#000,0.5)
-  // border-top: 2px solid rgba(#000, 0.5)
-  position: relative
-
-//-------------------------------------
 //  Inbox
 //-------------------------------------
+
 %link
   border-bottom: none
 
@@ -94,13 +48,3 @@
   margin: 0 10px
   b
     @extend %srt
-
-.link-list
-  display: inline-block
-  text-align: center
-  padding: 0
-  width: 100%
-
-#canvas
-  display: block
-  margin: 0 auto
