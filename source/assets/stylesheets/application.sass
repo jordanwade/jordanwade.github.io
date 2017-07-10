@@ -2,15 +2,12 @@
 //  Application
 //-------------------------------------
 
-// ----- Reset ----- //
-
-@import "normalize"
-
 // ----- Core ----- //
 
-@import "core/settings"
-@import "core/helpers"
-@import "core/base"
+@import "core/1_reset"
+@import "core/2_helpers"
+@import "core/3_config"
+@import "core/4_base"
 
 // ----- Components ----- //
 
@@ -42,9 +39,44 @@
     @extend %icn--github
 
 .c-icn
-  font-size: rem(32px)
+  font-size: 1.25rem
   text-align: center
   display: inline-block
-  margin: 0 10px
+  padding: 0 10px
+  background: #f4f2f3
+  position: relative
+  z-index: 2
   b
     @extend %srt
+
+.header-secondary
+  font-size: 2rem
+  line-height: 1.5
+  margin-bottom: 2rem
+
+.header-about
+  margin: 0
+
+.tcs
+  color: $secondary-color
+  text-transform: uppercase
+  font-size: rem(16px)
+
+.mbf 
+  margin-bottom: 0
+
+.mbl
+  margin-bottom: rem(40px)
+
+.link-list
+  justify-content: center
+  display: flex
+
+  &::before
+    content: ""
+    border-top: 1px solid $secondary-color
+    display: flex
+    position: absolute
+    width: 100%
+    top: 15px
+    z-index: 1

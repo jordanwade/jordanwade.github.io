@@ -1,0 +1,153 @@
+// *************************************
+//
+//   Reset
+//   -> Tag-level reset
+//
+// *************************************
+
+*, ::before, ::after {
+  background-repeat: no-repeat;
+  border: 0;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+::before, ::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+// -------------------------------------
+//   Block Elements
+// -------------------------------------
+
+// ----- Headings ----- //
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ol, ul {
+  list-style-type: none;
+}
+
+// ----- Preformatted Text ----- //
+
+pre {
+  font-family: inherit;
+}
+
+// -------------------------------------
+//   Inline Elements
+// -------------------------------------
+
+// ----- Links ----- //
+
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-text-decoration-skip: ink;
+}
+
+// ----- Media ----- //
+
+img, svg {
+  vertical-align: middle;
+}
+
+// ----- Text ----- //
+
+em, i {
+  font-style: inherit;
+}
+
+strong, b {
+  font-weight: inherit;
+}
+
+code, kbd {
+  font-family: inherit;
+}
+
+// -------------------------------------
+//   Forms
+// -------------------------------------
+
+// ----- Buttons ----- //
+
+button,
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  appearance: button;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+// ----- Controls ----- //
+
+select {
+  font-size: inherit;
+}
+
+[type='file'] {
+  font-size: inherit;
+}
+
+// ----- Text ----- //
+
+textarea,
+[type='email'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='text'],
+[type='url'] {
+  background-color: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+
+textarea {
+  resize: vertical;
+}
+
+// -------------------------------------
+//   Cross-browser
+// -------------------------------------
+
+// Remove the tapping delay on clickable elements
+// -> https://github.com/jonathantneal/sanitize.css/blob/master/sanitize.css#L521
+
+a,
+area,
+button,
+input,
+label,
+select,
+textarea,
+[tabindex] {
+  touch-action: manipulation;
+}
+
+// Correct the outline style in Safari
+// -> https://github.com/jonathantneal/sanitize.css/blob/master/sanitize.css#L453
+
+[type='search'] {
+  outline-offset: -2px;
+}
