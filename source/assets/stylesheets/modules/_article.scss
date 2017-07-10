@@ -1,0 +1,19 @@
+.article-time {
+  color: #aaa;
+  font-size: rem(14px);
+  text-transform: uppercase;
+}
+
+.article-content {
+  color: $base-color;
+}
+
+.article-card {
+  display: block;
+  padding: rem(20px);
+  border: 1px dashed;
+  margin-bottom: 15px;
+}
+.article-header {
+  font-size: rem(24px);
+}

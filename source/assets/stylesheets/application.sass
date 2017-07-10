@@ -2,70 +2,21 @@
 //  Application
 //-------------------------------------
 
-// ----- Compass ----- //
-
-@import "compass"
-@import "compass/layout"
-
-// ----- Reset ----- //
-
-@import "normalize"
-
 // ----- Core ----- //
 
-@import "core/settings"
-@import "core/helpers"
-@import "core/base"
+@import "core/1_reset"
+@import "core/2_helpers"
+@import "core/3_config"
+@import "core/4_base"
 
-// ----- Modules ----- //
+// ----- Components ----- //
 
 @import "modules/*"
 
 //-------------------------------------
-//  Header
-//-------------------------------------
-
-.header
-  padding-top: rem(55px)
-  text-align: center
-  font-weight: $c-header-fontWeight
-
-  h1
-    margin-top: rem(-40px)
-
-.header-about
-  font-size: $base-fontSize + 3
-
-// ----- Logo ----- //
-
-.logo
-  display: inline-block
-  position: relative
-
-.logo-name
-  position: relative
-  top: -55px
-  h1
-    text-align: center
-    font-size: rem(180px)
-    font-weight: normal
-    color: $base-color
-    line-height: 0.7
-  i:before
-    @extend %icn
-    @extend %icn--name
-
-// ----- Content ----- //
-
-.info
-  padding: 0 43px 10px
-  // border-bottom: 2px solid rgba(#000,0.5)
-  // border-top: 2px solid rgba(#000, 0.5)
-  position: relative
-
-//-------------------------------------
 //  Inbox
 //-------------------------------------
+
 %link
   border-bottom: none
 
@@ -88,19 +39,44 @@
     @extend %icn--github
 
 .c-icn
-  font-size: rem(32px)
+  font-size: 1.25rem
   text-align: center
   display: inline-block
-  margin: 0 10px
+  padding: 0 10px
+  background: #f4f2f3
+  position: relative
+  z-index: 2
   b
     @extend %srt
 
-.link-list
-  display: inline-block
-  text-align: center
-  padding: 0
-  width: 100%
+.header-secondary
+  font-size: 2rem
+  line-height: 1.5
+  margin-bottom: 2rem
 
-#canvas
-  display: block
-  margin: 0 auto
+.header-about
+  margin: 0
+
+.tcs
+  color: $secondary-color
+  text-transform: uppercase
+  font-size: rem(16px)
+
+.mbf 
+  margin-bottom: 0
+
+.mbl
+  margin-bottom: rem(40px)
+
+.link-list
+  justify-content: center
+  display: flex
+
+  &::before
+    content: ""
+    border-top: 1px solid $secondary-color
+    display: flex
+    position: absolute
+    width: 100%
+    top: 15px
+    z-index: 1
