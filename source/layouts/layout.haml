@@ -16,10 +16,6 @@
   %body{class: page_classes}
     %main
       = yield
-    %footer.footer.row
-      .cell.well
-        %p &copy;2017 Jordan Wade. All rights reserved.
-
   - if data.page.scripts
     - data.page.scripts.each do |script|
       = javascript_include_tag  "#{ script }"
