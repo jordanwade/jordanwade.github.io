@@ -68,6 +68,9 @@
 .mbl
   margin-bottom: rem(40px)
 
+.mbxl
+  margin-bottom: rem(60px)
+
 .link-list
   justify-content: center
   display: flex
@@ -76,7 +79,10 @@
   &::before
     content: ""
     border-top: 1px solid $secondary-color
-    display: flex
+    display: none
     position: absolute
     width: 100%
     top: 15px
+
+    +respond-to($bp-s)
+      display: block
