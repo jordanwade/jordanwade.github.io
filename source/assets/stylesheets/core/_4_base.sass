@@ -28,7 +28,9 @@ h1, h2, h3
   margin: 0
 
 h1, .h1, %h1
-  font-size: rem(65px)
+  font-size: rem(45px)
+  +respond-to($bp-m)
+    font-size: rem(65px)
 
 h2, .h2, %h2
   font-size: rem(30px)

@@ -7,6 +7,11 @@
 
 .bucket {
   display: flex;
+  flex-direction: column;
+
+  @include respond-to($bp-s) {
+    flex-direction: row;
+  }
 }
 
 // -------------------------------------
@@ -27,15 +32,24 @@
 
 .bucket-content {
   flex-grow: 1;
+  text-align: center;
+
+  @include respond-to($bp-s) {
+    text-align: left;
+  }
 }
 
 // ----- Media ----- //
 
 .bucket-media {
   flex-shrink: 0;
-  margin-right: $space;
+  margin-right: 0;
 
   > img {
     display: block;
+  }
+
+  @include respond-to($bp-s) {
+    margin-right: rem(50px);
   }
 }

@@ -11,8 +11,11 @@
 .article-card {
   display: block;
   padding: rem(20px);
-  border: 1px dashed;
+  border-bottom: 1px solid $secondary-color;
   margin-bottom: 15px;
+  &:last-child {
+    border-bottom: 0;
+  }
 }
 .article-header {
   font-size: rem(24px);
