@@ -125,6 +125,7 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
 }
 img {
   height: auto;
